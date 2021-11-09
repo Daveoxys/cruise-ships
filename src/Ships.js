@@ -1,9 +1,29 @@
-const startingPort = "Dover";
-
 class Ship {
-  constructor(name) {
-    this.name = name;
-    this.startingPort = startingPort;
+  constructor(itinerary) {
+    this.itinerary = itinerary;
+    this.currentPort = itinerary.ports[0];
+    this.previousPort = false;
+    this.currentPort.addShip(this);
+  }
+  setSail() {
+    const itinerary = this.itinerary;
+    const currentPortIndex = itinerary.ports.indexOf(this.currentPort);
+
+    if (currentPortIndex === itinerary.ports.length - 1) {
+      throw new Error("End of itinerary reached");
+    }
+
+    this.previousPort = this.currentPort;
+    this.currentPort = false;
+    this.previousPort.removeShip(this);
+  }
+
+  dock() {
+    const itinerary = this.itinerary;
+    const previousPortIndex = itinerary.ports.indexOf(this.previousPort);
+    const nextPortIndex = previousPortIndex + 1;
+    this.currentPort = itinerary.ports[nextPortIndex];
+    this.currentPort.addShip(this);
   }
 }
 

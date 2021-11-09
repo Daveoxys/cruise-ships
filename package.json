@@ -6,7 +6,10 @@
   "scripts": {
     "test": "jest"
   },
-  "author": "",
+    "keywords": [
+    "cruise-ships"
+  ],
+  "author": "Dave Taylor",
   "license": "ISC",
   "devDependencies": {
     "jest": "^27.3.1"
